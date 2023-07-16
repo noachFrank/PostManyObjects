@@ -18,6 +18,11 @@ namespace ManyPeople.data
 
         public void AddOne(Person p)
         {
+            if(p.FirstName == null || p.LastName == null || p.Age == 0) 
+            {
+                return;
+            }
+
             using var connection = new SqlConnection(_connectionString);
             using var command = connection.CreateCommand();
             command.CommandText = @"INSERT INTO People (FirstName, LastName, Age)
